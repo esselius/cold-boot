@@ -29,7 +29,19 @@ class HostTemplateAwsTest < Minitest::Test
     assert_equal @template.scale, 1
   end
 
-  def test_tags_includes_signature
+  def test_tags_includes_internal_values
     assert_equal @template.tags['created_by'], 'cold-boot'
+    assert_equal @template.tags['cb_name'], 'test-template'
+  end
+
+  def test_can_bump_version
+    @template = HostTemplate::Aws.new(
+      name: 'test-template',
+      instance_type: 'c4.large',
+      ami: 'ami-1234567',
+      version: 4
+    )
+
+    assert_equal @template.auto_scaling_group_name, 'test-template-v04'
   end
 end
