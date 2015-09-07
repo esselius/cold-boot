@@ -9,3 +9,6 @@ build: Gemfile.lock
 
 test: build
 	docker run -it $(IMAGE) test
+
+lint: build
+	docker run -it $(IMAGE) rubocop
