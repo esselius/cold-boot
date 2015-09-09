@@ -15,10 +15,6 @@ class HostTemplate::Aws < HostTemplate
     options.fetch(:ami)
   end
 
-  def scale
-    options.fetch(:scale, 1)
-  end
-
   def tags
     internal_tags.merge(options.fetch(:tags, {}))
   end

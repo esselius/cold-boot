@@ -25,10 +25,6 @@ class HostTemplateAwsTest < Minitest::Test
     assert_equal @template.ami, 'ami-1234567'
   end
 
-  def test_scale_defaults_to_one_if_not_set
-    assert_equal @template.scale, 1
-  end
-
   def test_tags_includes_internal_values
     assert_equal @template.tags['created_by'], 'cold-boot'
     assert_equal @template.tags['cb_name'], 'test-template'
